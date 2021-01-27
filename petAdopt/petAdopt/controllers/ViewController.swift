@@ -18,7 +18,7 @@ class ViewController: UIViewController {
   let animalsManager = AnimalsMAnager()
    
   var animaPerType:[Animal]?
-  var animalList:[Animal]? //🎉
+  var animalList:[Animal]? // sigue siendo nil
   
   
   // Mark: - OUTLETS ‼️
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
     //allAnimals()
     animalsManager.fetchToken()
-    
+    fetchAnimals()
     
    
     
@@ -73,13 +73,13 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource{
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    PrototypeLayout.images4Loop.count
+    PrototypeLayout.imagesLoop.count
   }
 
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
    
-    return  arrayOfImages(PrototypeLayout.images4Loop).count
+    return  arrayOfImages(PrototypeLayout.imagesLoop).count
      // return animalList?.count ?? 20
   }
   
@@ -88,8 +88,8 @@ extension ViewController: UITableViewDataSource{
 
     let cell = tableView.dequeueReusableCell(withIdentifier: myReuseIdentifier, for: indexPath) as! PetCell
     
-    cell.imageCell.image = arrayOfImages(PrototypeLayout.images4Loop)[indexPath.row]
-    cell.labelCell.text = PrototypeLayout.images4Loop[indexPath.row]
+    cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
+    cell.labelCell.text = PrototypeLayout.imagesLoop[indexPath.row]
     cell.labelCell.textColor = .oceansBlue()
     
 //    if let animals = animalList?[indexPath.row]{
@@ -114,7 +114,7 @@ extension ViewController: UITableViewDataSource{
   //
   //    }
   
- 
+  
   
   func arrayOfImages(_ image:[String]) -> [UIImage]{
     var imageArray = [UIImage]()
@@ -126,6 +126,19 @@ extension ViewController: UITableViewDataSource{
     return imageArray
   }
   
+  func fetchAnimals(){
+    
+    animalsManager.generalAnimals { (AnimalList) in
+      self.animalList = AnimalList.animals
+               print(AnimalList.animals)
+    }
+  }
+  
+  
+  
+  
+  
+  
 }
 
 // Mark: - DELEGATE ‼️
@@ -134,8 +147,8 @@ extension ViewController: UITableViewDelegate {
     //PetsViewModel.selectedPet = animals?[indexPath]
     performSegue(withIdentifier: "goToDetalil", sender: nil)
     PetsViewModel.selectedPet = animalList?[indexPath.row]
-    PrototypeLayout.selectedName = PrototypeLayout.images4Loop[indexPath.row]
-    PrototypeLayout.selectedImage = arrayOfImages(PrototypeLayout.images4Loop)[indexPath.row]
+    PrototypeLayout.selectedName = PrototypeLayout.imagesLoop[indexPath.row]
+    PrototypeLayout.selectedImage = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
 
     print(indexPath)
   }

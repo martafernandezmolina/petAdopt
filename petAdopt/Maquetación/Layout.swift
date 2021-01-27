@@ -12,7 +12,7 @@ import UIKit
 
 struct PrototypeLayout {
   
-   static var images4Loop:[String] = ["Brownie", "Jango", "Merlin", "Piggy", "Rose"," Speedy", "Blue","Ragnar", "Odín","Hamtaro","Locuelo","Nuvi","Rex", "Umaru","Spoink", "Rafael", "Lorenzo" ,"Akita"]
+   static var imagesLoop:[String] = ["Brownie", "Jango", "Merlin", "Piggy", "Rose"," Speedy", "Blue","Ragnar", "Odín","Hamtaro","Locuelo","Nuvi","Rex", "Umaru","Spoink", "Rafael", "Lorenzo" ,"Akita"]
   
   static var selectedImage:UIImage?
   static var selectedName:String?
