@@ -16,7 +16,8 @@ let myReuseIdentifier = String(describing:PetCell.self)
 class ViewController: UIViewController {
   
   let animalsManager = AnimalsMAnager()
-
+   
+  var animaPerType:[Animal]?
   var animalList:[Animal]? //🎉
   
   // Mark: - OUTLETS ‼️
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
     tableview.dataSource = self
     let nib = UINib (nibName: "PetCell", bundle: nil)
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
-    allAnimals()
+    //allAnimals()
     
     
     
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
     
   }
   
-  func allAnimals(){
+  /*func allAnimals(){
  
     animalsManager.generalAnimals(success:{(animalsInfo) in
                                     self.animalList? = animalsInfo.animals
@@ -48,17 +49,15 @@ class ViewController: UIViewController {
                                     print(animalsInfo.animals)})
   }
   
-  
+  */
 
   //  func fetchEverything(_ type:String){
-  //
   //    animalsManager.searchType(type: type,
-  //                                success:{(news) in
-  //                                  self.animals = news
+  //                                success:{(infoType) in
+  //                                  self.animals = infoType.animal
   //
   //                                  self.tableview.reloadData()
-  //                                  print("estoy en el bloque success \n\n")
-  //                                  print(news.age ?? "alternative Text")})
+  //                                  print("in succes block \n\n")})
   //
   //  }
 
@@ -89,30 +88,27 @@ extension ViewController: UITableViewDataSource{
     
 //    if let animals = animalList?[indexPath.row]{
 //      cell.labelCell.text = animals.name
-//      print (animals.name)
+//
 //      let urlToImage = animals.photos.small
 //      if let urlImage = URL(string: urlToImage){
 //            cell.imageCell.af.setImage(withURL: urlImage)
 //          }
-//
+//                                 Aquí cuando decodifique  correctamente
 //    }
     
     return cell
   }
   
   
-  //   func fetchEverything(_ type:String){
-  //
+  //   func fetchAnimalType(_ type:String){
   //      animalsManager.searchType(type: type,
-  //                                  success:{(news) in
-  //                                    self.animalGeneral = news.
+  //                                  success:{(nformation) in
+  //                                    self.animaPerType = information
   //                                    self.tableview.reloadData()
-  //                                    print("Block succes \n\n")
   //
   //    }
   
-  
-  
+ 
   
   func arrayOfImages(_ image:[String]) -> [UIImage]{
     var imageArray = [UIImage]()
@@ -144,7 +140,7 @@ extension ViewController: UITableViewDelegate {
 extension ViewController :UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     print("\(textFieldOutlet.text)")
-    //fetchEverything(textFieldOutlet.text ?? "")
+   // fetchAnimalType(textFieldOutlet.text ?? "")
     textField.resignFirstResponder() // para que se quite el teclado  y que pierda el foco
     return true
   }
