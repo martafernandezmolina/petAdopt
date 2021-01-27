@@ -34,7 +34,7 @@ class DetailViewController: UIViewController{
     petNAme.text = PrototypeLayout.selectedName
     petImage.image = PrototypeLayout.selectedImage
     smallName.text = PrototypeLayout.selectedName
-   // petNAme.backgroundColor = .oceansBlue()
+    //petNAme.backgroundColor = .oceansBlue()
     
 //    guard let animalInfo:Animals = PetsViewModel.selectedPet else {return}
 //    self.title =  animalInfo.name

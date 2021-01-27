@@ -13,7 +13,9 @@ import Alamofire
 struct AnimalsMAnager{
   
   
-  static let accesToken:String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6ImJiZWYyNzYyODI0ZjMyNWZlOTJhODgyZjkzNjNiNjMzNTJhMThiNzhmNTlhOGM2MmJjODY4N2ZmNTllMDdiYTk0NmNhMWVhMDUzYzJjYjBlIiwiaWF0IjoxNjExNjk4OTAyLCJuYmYiOjE2MTE2OTg5MDIsImV4cCI6MTYxMTcwMjUwMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.zlqZ9uE5Ep0BLiqhC59TFv63tzJ7aZTmSycBbjMfs5NTNN9GieBM_WnchAx8a5pXnAvse4JFtxvDCG_cz-J2_w0TCujK8vyjCYhLI7UKGsEGrMir04mc0ECc-FVtVOo2wsN2ILJ3gEmTKDvGuK5Y53XUzPOh5ktMYTrGV0DoVOSQL7lI038v3g6Se6VmWp0z4d-vqiQStNfxHpsLCigFfnyf3dj3GepgKgXBsZnCRy-o6PX8t3RusDFM8HDUJsp3dpv4HvqvWP7AezrO1EOIa7Pnb20Jc546k_kNGH2GeVh2k7sUC1fLYdNRksfQs2KkFlF8qmdDICb4jGONvPdBUA"
+  static var accesToken:String = ""
+  
+  /*"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6ImJiZWYyNzYyODI0ZjMyNWZlOTJhODgyZjkzNjNiNjMzNTJhMThiNzhmNTlhOGM2MmJjODY4N2ZmNTllMDdiYTk0NmNhMWVhMDUzYzJjYjBlIiwiaWF0IjoxNjExNjk4OTAyLCJuYmYiOjE2MTE2OTg5MDIsImV4cCI6MTYxMTcwMjUwMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.zlqZ9uE5Ep0BLiqhC59TFv63tzJ7aZTmSycBbjMfs5NTNN9GieBM_WnchAx8a5pXnAvse4JFtxvDCG_cz-J2_w0TCujK8vyjCYhLI7UKGsEGrMir04mc0ECc-FVtVOo2wsN2ILJ3gEmTKDvGuK5Y53XUzPOh5ktMYTrGV0DoVOSQL7lI038v3g6Se6VmWp0z4d-vqiQStNfxHpsLCigFfnyf3dj3GepgKgXBsZnCRy-o6PX8t3RusDFM8HDUJsp3dpv4HvqvWP7AezrO1EOIa7Pnb20Jc546k_kNGH2GeVh2k7sUC1fLYdNRksfQs2KkFlF8qmdDICb4jGONvPdBUA"*/
   
   // cuando funcione el mapeo,ponerlo en una función de retorno
   
@@ -30,17 +32,19 @@ struct AnimalsMAnager{
   
   //MARK :-  TOKEN URL OBTAIN
   
-  func obtainToken(){
+  func fetchToken(){
     
     AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, headers : nil)
       .responseJSON { response in
         if let response =  response.value {
           print(response)
+          AnimalsMAnager.accesToken.append("\(response)")
           print ("##############")
           
         }
         
       }
+  }
     
     func dogTestingRequest(){
       AF.request("https://api.petfinder.com/v2/animals?type=dog",headers : headers)
@@ -84,9 +88,9 @@ struct AnimalsMAnager{
         
         success(animalsPerType)
       }
-  
-      
+ 
     }
-    
+
+
   }
-}
+

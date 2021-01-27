@@ -20,7 +20,9 @@ class ViewController: UIViewController {
   var animaPerType:[Animal]?
   var animalList:[Animal]? //🎉
   
+  
   // Mark: - OUTLETS ‼️
+  
   @IBOutlet weak var textFieldOutlet: UITextField!
   @IBOutlet var tableview:UITableView!
   
@@ -34,12 +36,15 @@ class ViewController: UIViewController {
     let nib = UINib (nibName: "PetCell", bundle: nil)
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
     //allAnimals()
-    
+    animalsManager.fetchToken()
     
     
    
     
   }
+  
+  
+  // MARK: - NEEDED FETCHES
   
   /*func allAnimals(){
  
@@ -85,6 +90,7 @@ extension ViewController: UITableViewDataSource{
     
     cell.imageCell.image = arrayOfImages(PrototypeLayout.images4Loop)[indexPath.row]
     cell.labelCell.text = PrototypeLayout.images4Loop[indexPath.row]
+    cell.labelCell.textColor = .oceansBlue()
     
 //    if let animals = animalList?[indexPath.row]{
 //      cell.labelCell.text = animals.name
@@ -139,9 +145,16 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController :UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    animalsManager.fetchToken()
     print("\(textFieldOutlet.text)")
    // fetchAnimalType(textFieldOutlet.text ?? "")
     textField.resignFirstResponder() // para que se quite el teclado  y que pierda el foco
     return true
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    //animalsManager.fetchToken()
+  }
+  
+  
 }

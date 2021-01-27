@@ -14,4 +14,8 @@ class PetCell:UITableViewCell {
   @IBOutlet weak var labelCell: UILabel!
   @IBOutlet weak var descriptionPet: UILabel!
   
+ 
+  
+  
+  
 }

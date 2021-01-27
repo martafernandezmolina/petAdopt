@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// HERE WE ARE GONNA SAVE ALL DATA FOR THE  PROTOTIPE LAYOUT
+// HERE WE ARE GONNA SAVE ALL DATA FROM PROTOTIPE LAYOUT
 
 struct PrototypeLayout {
   
