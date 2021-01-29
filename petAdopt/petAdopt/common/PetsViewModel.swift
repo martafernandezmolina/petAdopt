@@ -10,7 +10,8 @@ import UIKit
 
 struct PetsViewModel {
   
-  static var selectedPet:Animal?
+  static var selectedPet:Animals?
+  static var myPAss:String?
   
 }
 

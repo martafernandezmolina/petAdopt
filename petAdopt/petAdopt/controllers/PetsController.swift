@@ -13,15 +13,16 @@ import AlamofireImage
 
 let myReuseIdentifier = String(describing:PetCell.self)
 
-class ViewController: UIViewController {
+class PetsController: UIViewController {
   
   let animalsManager = AnimalsMAnager()
-   
-  var animaPerType:[Animal]?
-  var animalList:[Animal]? // sigue siendo nil
+  
+  var animaPerType:[Animals]?
+  var generalAnimalList:[Animals]?
   
   
-  // Mark: - OUTLETS ‼️
+  
+  // MARK: - OUTLETS ‼️
   
   @IBOutlet weak var textFieldOutlet: UITextField!
   @IBOutlet var tableview:UITableView!
@@ -35,11 +36,13 @@ class ViewController: UIViewController {
     tableview.dataSource = self
     let nib = UINib (nibName: "PetCell", bundle: nil)
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
+    gettingPassword()
     //allAnimals()
     animalsManager.fetchToken()
     fetchAnimals()
     
-   
+    self.title = "PET ADOPT 🐕"
+    
     
   }
   
@@ -47,17 +50,17 @@ class ViewController: UIViewController {
   // MARK: - NEEDED FETCHES
   
   /*func allAnimals(){
- 
-    animalsManager.generalAnimals(success:{(animalsInfo) in
-                                    self.animalList? = animalsInfo.animals
-                                    self.tableview.reloadData()
-                                    print(animalsInfo.animals)})
-  }
+   
+   animalsManager.generalAnimals(success:{(animalsInfo) in
+   self.animalList? = animalsInfo.animals
+   self.tableview.reloadData()
+   print(animalsInfo.animals)})
+   }
+   
+   */
   
-  */
-
   //  func fetchEverything(_ type:String){
-  //    animalsManager.searchType(type: type,
+  //     animalsManager.searchType(type: type,
   //                                success:{(infoType) in
   //                                  self.animals = infoType.animal
   //
@@ -65,42 +68,74 @@ class ViewController: UIViewController {
   //                                  print("in succes block \n\n")})
   //
   //  }
-
+  
 }
 
 // Mark: - DATASOURCE ‼️
 
-extension ViewController: UITableViewDataSource{
+extension PetsController: UITableViewDataSource{
   
-  func numberOfSections(in tableView: UITableView) -> Int {
-    PrototypeLayout.imagesLoop.count
-  }
-
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//     PrototypeLayout.imagesLoop.count
+//    }
+  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-   
+    
     return  arrayOfImages(PrototypeLayout.imagesLoop).count
-     // return animalList?.count ?? 20
+    //return generalAnimalList?.count ?? 1
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
-
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: myReuseIdentifier, for: indexPath) as! PetCell
     
-    cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
-    cell.labelCell.text = PrototypeLayout.imagesLoop[indexPath.row]
-    cell.labelCell.textColor = .oceansBlue()
     
-//    if let animals = animalList?[indexPath.row]{
-//      cell.labelCell.text = animals.name
+    if let animalsInformation = generalAnimalList?[indexPath.row]{
+      cell.labelCell.textColor = .oceansBlue()
+      cell.labelCell.text = animalsInformation.name
+      cell.descriptionPet.text = animalsInformation.gender
+      
+      
+    
+      
+    }
+    
+    cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
+    
+    //cell.descriptionPet.text = generalAnimalList?[indexPath.row].gender
+    
+     
+    
+    // IMG
+    
+//    if let urlToImage = generalAnimalList?[indexPath.row].photos.small,  let urlImage = URL(string: urlToImage){
 //
-//      let urlToImage = animals.photos.small
-//      if let urlImage = URL(string: urlToImage){
-//            cell.imageCell.af.setImage(withURL: urlImage)
-//          }
-//                                 Aquí cuando decodifique  correctamente
-//    }
+//       cell.imageCell.af.setImage(withURL: urlImage)
+//}
+
+  
+    
+    
+   /*
+        cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
+        cell.labelCell.text = PrototypeLayout.imagesLoop[indexPath.row]
+        cell.labelCell.textColor = .oceansBlue()
+    
+    
+    */
+    
+    
+    
+    //    if let animals = animalList?[indexPath.row]{
+    //      cell.labelCell.text = animals.name
+    //
+    //      let urlToImage = animals.photos.small
+    //      if let urlImage = URL(string: urlToImage){
+    //            cell.imageCell.af.setImage(withURL: urlImage)
+    //          }
+    //                                 Aquí cuando decodifique  correctamente
+    //    }
     
     return cell
   }
@@ -115,52 +150,55 @@ extension ViewController: UITableViewDataSource{
   //    }
   
   
-  
   func arrayOfImages(_ image:[String]) -> [UIImage]{
     var imageArray = [UIImage]()
     image.forEach { img in
       if let image = UIImage(named: img){
         imageArray.append(image)
-     }
+      }
     }
     return imageArray
   }
   
   func fetchAnimals(){
     
-    animalsManager.generalAnimals { (AnimalList) in
-      self.animalList = AnimalList.animals
-               print(AnimalList.animals)
-    }
+    animalsManager.generalAnimals(success:{(animalListt) in
+      self.generalAnimalList = animalListt.animals
+      self.tableview.reloadData()
+      print(animalListt.animals)
+      print ("LOL JAJ")
+    })
   }
-  
-  
-  
-  
-  
   
 }
 
+func gettingPassword(){
+  AnimalsMAnager.fetchPassword { (Password) in
+    
+    PetsViewModel.myPAss = Password.access_token
+    print(type(of:  PetsViewModel.myPAss))
+  }
+}
+
 // Mark: - DELEGATE ‼️
-extension ViewController: UITableViewDelegate {
+extension PetsController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     //PetsViewModel.selectedPet = animals?[indexPath]
     performSegue(withIdentifier: "goToDetalil", sender: nil)
-    PetsViewModel.selectedPet = animalList?[indexPath.row]
+    PetsViewModel.selectedPet = generalAnimalList?[indexPath.row]
     PrototypeLayout.selectedName = PrototypeLayout.imagesLoop[indexPath.row]
     PrototypeLayout.selectedImage = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
-
+    
     print(indexPath)
   }
   
 }
- 
 
-extension ViewController :UITextFieldDelegate {
+extension PetsController :UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     animalsManager.fetchToken()
     print("\(textFieldOutlet.text)")
-   // fetchAnimalType(textFieldOutlet.text ?? "")
+    // fetchAnimalType(textFieldOutlet.text ?? "")
     textField.resignFirstResponder() // para que se quite el teclado  y que pierda el foco
     return true
   }

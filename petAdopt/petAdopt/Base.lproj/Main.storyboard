@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Pets Controller-->
         <scene sceneID="jLp-D8-nOj">
             <objects>
-                <viewController id="Pso-pP-EDV" customClass="ViewController" customModule="petAdopt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pso-pP-EDV" customClass="PetsController" customModule="petAdopt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3xm-mL-qeS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,6 +247,7 @@
                         <outlet property="contactPhone" destination="xY5-op-fEL" id="x2v-BB-KAK"/>
                         <outlet property="petAdopt" destination="uS6-mK-haw" id="Lgt-tr-uIF"/>
                         <outlet property="petAge" destination="aiC-nI-q5F" id="64r-wj-iDc"/>
+                        <outlet property="petDescribing" destination="rjR-xH-K0f" id="VKs-cP-767"/>
                         <outlet property="petImage" destination="tri-bv-OI6" id="iZF-Fc-AKW"/>
                         <outlet property="petNAme" destination="7M6-Cg-biB" id="OSH-q0-Lxm"/>
                         <outlet property="petType" destination="Xyu-Xo-7Y8" id="Mww-w0-gjq"/>

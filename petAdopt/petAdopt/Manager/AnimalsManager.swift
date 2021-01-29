@@ -14,19 +14,41 @@ struct AnimalsMAnager{
   
   
   static var accesToken:String = ""
-  
-  /*"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6ImJiZWYyNzYyODI0ZjMyNWZlOTJhODgyZjkzNjNiNjMzNTJhMThiNzhmNTlhOGM2MmJjODY4N2ZmNTllMDdiYTk0NmNhMWVhMDUzYzJjYjBlIiwiaWF0IjoxNjExNjk4OTAyLCJuYmYiOjE2MTE2OTg5MDIsImV4cCI6MTYxMTcwMjUwMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.zlqZ9uE5Ep0BLiqhC59TFv63tzJ7aZTmSycBbjMfs5NTNN9GieBM_WnchAx8a5pXnAvse4JFtxvDCG_cz-J2_w0TCujK8vyjCYhLI7UKGsEGrMir04mc0ECc-FVtVOo2wsN2ILJ3gEmTKDvGuK5Y53XUzPOh5ktMYTrGV0DoVOSQL7lI038v3g6Se6VmWp0z4d-vqiQStNfxHpsLCigFfnyf3dj3GepgKgXBsZnCRy-o6PX8t3RusDFM8HDUJsp3dpv4HvqvWP7AezrO1EOIa7Pnb20Jc546k_kNGH2GeVh2k7sUC1fLYdNRksfQs2KkFlF8qmdDICb4jGONvPdBUA"*/
-  
-  // cuando funcione el mapeo,ponerlo en una función de retorno
-  
+  //accesToken
+
   let headers: HTTPHeaders = [
-    "Authorization": "Bearer \(accesToken)"
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6ImVkNmFjMTA0ZDRhMTAyY2U1Y2E3MDE1ZWI0Y2E0NGUyM2RkYTcxZjFjZjkyMWJlNTQ4NDQ5ZGI3NjVmYmQzYjNhMWZjYzgwOTQwYTAyYWE4IiwiaWF0IjoxNjExOTU2MTgyLCJuYmYiOjE2MTE5NTYxODIsImV4cCI6MTYxMTk1OTc4Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.uRUHYQSpcjlqrd---iRrsim4aHZ7Oqz1vu9m6-dY9nu3I2UqcWzg3S2mZLrhLfG8kEkMzlRi8QzDtFBGaHRFvRqFSFJZbyXX-vEK_wvqTQCBBoi1KlnvGzvz1A0hy4wsjp78sVfxAvu2L0l0RFePJLHyOv6BAyCpJ3IzQvjUuFC9d0p2kb_ZCocCsurP9sIDeY-1I5W8jdsyYivPQL7_a06zpzqlRDu4mxmOmzhn6mhEVUhaqUEBhl64z8eLsFg_9w4cR8YeBuplk5kW0PEfaL060KZhc8oXwCobA1rzG3_hvPEx4CBLoqEhtaFoW-yiLbm4sI7cLwfvvVROGKT6NQ"
   ]
   
   let parameters:[String:String] = [
     "grant_type": "client_credentials",
     "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
     "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // BODY!!!!
+  
+  
+  
+  //MARK :-  PASWORD
+  
+  static func  fetchPassword(success: @escaping(Password)-> ()){
+    
+    let parameters:[String:String] = [
+      "grant_type": "client_credentials",
+      "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
+      "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // body
+    
+    
+    
+    AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, headers : nil).validate().responseDecodable(of: Password.self)
+      { response in
+        guard let token:Password = response.value else {
+          print ("function decoding error")
+          return
+        }
+      success(token)
+      }
+  }
+  
+  
   
   
   
@@ -63,14 +85,13 @@ struct AnimalsMAnager{
       AF.request(EndPoints.generalAnimals.rawValue, parameters: nil, headers: headers).validate().responseDecodable(of: AnimalList.self){
         response in
         guard let animalList:AnimalList  = response.value else {
+          debugPrint("Error while calling \(#function)")
           debugPrint(response.description)
           return}
-        
         success(animalList)
       }
-      
     }
-    
+  
     
     //MARK :-  DECODING BY TYPE => TO SEARCH
     
@@ -85,12 +106,12 @@ struct AnimalsMAnager{
         guard let animalsPerType: AnimalList = response.value else {
           return
         }
-        
         success(animalsPerType)
       }
- 
     }
-
-
   }
 
+
+
+//  print("error calling GET on /todos/\(id)")
+//print(response.result.error!)

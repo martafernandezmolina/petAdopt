@@ -20,23 +20,39 @@ class DetailViewController: UIViewController{
   @IBOutlet weak var contactPhone: UILabel!
   @IBOutlet weak var contactEmail: UILabel!
   @IBOutlet weak var petAdopt: UIButton!
-  
+ 
+  @IBOutlet weak var petDescribing: UILabel!
   
   //Mark:- Actions
   
   @IBAction func AdoptAction(_ sender: Any) {
   }
   
+  let animalInfo = PetsController()
   
   override func viewDidLoad() {
     super .viewDidLoad()
     
-    petNAme.text = PrototypeLayout.selectedName
-    petImage.image = PrototypeLayout.selectedImage
-    smallName.text = PrototypeLayout.selectedName
-    //petNAme.backgroundColor = .oceansBlue()
+    if let selectedPet = PetsViewModel.selectedPet{
+      petNAme.text = selectedPet.name
+      smallName.text = selectedPet.name
+      contactPhone.text = selectedPet.contact.phone
+      contactEmail.text = selectedPet.contact.email
+      petType.text = selectedPet.type
+      petAge.text = selectedPet.age
+     
+    }
     
-//    guard let animalInfo:Animals = PetsViewModel.selectedPet else {return}
+    petDescribing.text = PetsViewModel.selectedPet?.description ?? "looking for a family"
+ 
+    
+//    petNAme.text = PetsViewModel.selectedPet?.name
+//    petImage.image = PrototypeLayout.selectedImage
+//    smallName.text = PetsViewModel.selectedPet?.name
+//    contactPhone.text = PetsViewModel.selectedPet?.contact.phone ?? "_"
+//    contactEmail.text =
+//
+    
 //    self.title =  animalInfo.name
     // FOR IMAGE
 //    if let petImage = animalInfo.urlToImage, let myImage = URL(string: segueToimage){
