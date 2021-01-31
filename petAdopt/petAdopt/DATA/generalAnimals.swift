@@ -10,6 +10,7 @@ import Foundation
 
 struct AnimalList: Codable {
     let animals: [Animals]
+   // let pagination: Pagination
    
 }
 

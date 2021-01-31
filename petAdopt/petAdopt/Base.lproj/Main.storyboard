@@ -26,7 +26,7 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNR-4U-9wY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search" smartDashesType="yes"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,7 +93,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5h-f8-1B8">
                                 <rect key="frame" x="0.0" y="138" width="414" height="307"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Piggy" translatesAutoresizingMaskIntoConstraints="NO" id="tri-bv-OI6">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultIamge" translatesAutoresizingMaskIntoConstraints="NO" id="tri-bv-OI6">
                                         <rect key="frame" x="0.0" y="23" width="414" height="262"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="262" id="B2u-9N-bxi"/>
@@ -276,7 +276,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Piggy" width="540" height="720"/>
+        <image name="DefaultIamge" width="225" height="225"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

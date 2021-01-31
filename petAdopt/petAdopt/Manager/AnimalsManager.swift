@@ -13,11 +13,12 @@ import Alamofire
 struct AnimalsMAnager{
   
   
+  
   static var accesToken:String = ""
   //accesToken
 
   let headers: HTTPHeaders = [
-    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6ImVkNmFjMTA0ZDRhMTAyY2U1Y2E3MDE1ZWI0Y2E0NGUyM2RkYTcxZjFjZjkyMWJlNTQ4NDQ5ZGI3NjVmYmQzYjNhMWZjYzgwOTQwYTAyYWE4IiwiaWF0IjoxNjExOTU2MTgyLCJuYmYiOjE2MTE5NTYxODIsImV4cCI6MTYxMTk1OTc4Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.uRUHYQSpcjlqrd---iRrsim4aHZ7Oqz1vu9m6-dY9nu3I2UqcWzg3S2mZLrhLfG8kEkMzlRi8QzDtFBGaHRFvRqFSFJZbyXX-vEK_wvqTQCBBoi1KlnvGzvz1A0hy4wsjp78sVfxAvu2L0l0RFePJLHyOv6BAyCpJ3IzQvjUuFC9d0p2kb_ZCocCsurP9sIDeY-1I5W8jdsyYivPQL7_a06zpzqlRDu4mxmOmzhn6mhEVUhaqUEBhl64z8eLsFg_9w4cR8YeBuplk5kW0PEfaL060KZhc8oXwCobA1rzG3_hvPEx4CBLoqEhtaFoW-yiLbm4sI7cLwfvvVROGKT6NQ"
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6IjE2ZTE0Njk1MDE1NGMzMDU5MjQ1YTlhNGJiMzE2NDllZjIwNThhNWYyZWIxZjUyMTM4YTVmMmNhNWFhYWI2ZDdhMTg4YTgzN2IzZTY2MDZkIiwiaWF0IjoxNjEyMDk3NjQ3LCJuYmYiOjE2MTIwOTc2NDcsImV4cCI6MTYxMjEwMTI0Nywic3ViIjoiIiwic2NvcGVzIjpbXX0.GG7nPX9gMmUsibSKXpfoX808CCNZ5oFK62sAczcy8wGbYI_bQyzd26pytQxMLbsMRbzqk_9IgR1DJ5R5EVRzUAGe6RH7f9Yo4NLP09tI3JglB8QP2kKG3dS38r51s4-aAyWLoCZHcnYhiB8P8jNSS1NDyLYfU9NxTkS6-T_8_j5SSkt6o-oaIPmIdP_bKyNKwImco-gu7kJnQJbvNh8iR_X1YIUoUBX9wD49nLrHteloblsC21-ZiHCNhpZX10m488mJWUs_wkh6BZuKRzRMjRq4QNiG9M9rVLBLbQ8sF6LOrviCuXNPB1F9lHP7MAOdDr9wAFA5vJHc9vcYsRJcxg"
   ]
   
   let parameters:[String:String] = [
@@ -52,7 +53,7 @@ struct AnimalsMAnager{
   
   
   
-  //MARK :-  TOKEN URL OBTAIN
+  //MARK :-  OBTAIN TOKEN URL
   
   func fetchToken(){
     
@@ -93,7 +94,7 @@ struct AnimalsMAnager{
     }
   
     
-    //MARK :-  DECODING BY TYPE => TO SEARCH
+    //MARK :- DECODING BY TYPE => TO SEARCH
     
     func searchAnimals(type:String,
                        success: @escaping(AnimalList)-> ()) {
@@ -112,6 +113,3 @@ struct AnimalsMAnager{
   }
 
 
-
-//  print("error calling GET on /todos/\(id)")
-//print(response.result.error!)

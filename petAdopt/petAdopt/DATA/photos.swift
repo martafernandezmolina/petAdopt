@@ -11,7 +11,7 @@ import UIKit
 
 struct Photos: Codable {
   let small:String?
-//  var medium:String?
-//  let large:String?
-//  let full: String?
+  var medium:String?
+  let large:String?
+  let full: String?
 }

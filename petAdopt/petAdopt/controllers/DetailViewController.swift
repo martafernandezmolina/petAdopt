@@ -11,7 +11,7 @@ import UIKit
 
 class DetailViewController: UIViewController{
   
-  //Mark:- OUTLETS
+  //MARK:- OUTLETS
   @IBOutlet weak var petNAme: UILabel!
   @IBOutlet weak var petImage: UIImageView!
   @IBOutlet weak var smallName: UILabel!
@@ -20,46 +20,42 @@ class DetailViewController: UIViewController{
   @IBOutlet weak var contactPhone: UILabel!
   @IBOutlet weak var contactEmail: UILabel!
   @IBOutlet weak var petAdopt: UIButton!
- 
+  
   @IBOutlet weak var petDescribing: UILabel!
   
-  //Mark:- Actions
+  //MARK:- Actions
   
   @IBAction func AdoptAction(_ sender: Any) {
+    
   }
   
   let animalInfo = PetsController()
   
   override func viewDidLoad() {
     super .viewDidLoad()
-    
+    layout()
     if let selectedPet = PetsViewModel.selectedPet{
       petNAme.text = selectedPet.name
       smallName.text = selectedPet.name
-      contactPhone.text = selectedPet.contact.phone
+      contactPhone.text = selectedPet.contact.phone ?? "-"
       contactEmail.text = selectedPet.contact.email
       petType.text = selectedPet.type
       petAge.text = selectedPet.age
-     
+      
+      for photos in selectedPet.photos {
+        if let urlToImage =  photos.large, let myUrl = URL(string: urlToImage){
+        petImage.af.setImage(withURL: myUrl)
+        }
+      }
+      
+petDescribing.text = PetsViewModel.selectedPet?.description ?? "looking for a family"
+      
     }
-    
-    petDescribing.text = PetsViewModel.selectedPet?.description ?? "looking for a family"
- 
-    
-//    petNAme.text = PetsViewModel.selectedPet?.name
-//    petImage.image = PrototypeLayout.selectedImage
-//    smallName.text = PetsViewModel.selectedPet?.name
-//    contactPhone.text = PetsViewModel.selectedPet?.contact.phone ?? "_"
-//    contactEmail.text =
-//
-    
-//    self.title =  animalInfo.name
-    // FOR IMAGE
-//    if let petImage = animalInfo.urlToImage, let myImage = URL(string: segueToimage){
-//      segueImageView.af.setImage(withURL: myImage)
-//
-//  }
   }
-  
-  
+  func layout(){
+    
+    petAdopt.layer.cornerRadius = 5
+    petImage.layer.borderColor = UIColor.black.cgColor
+    
+  }
 }

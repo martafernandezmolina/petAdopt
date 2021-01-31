@@ -12,6 +12,7 @@ struct PetsViewModel {
   
   static var selectedPet:Animals?
   static var myPAss:String?
+  static var selectedPEtImage:Animals?
   
 }
 

@@ -15,9 +15,9 @@ let myReuseIdentifier = String(describing:PetCell.self)
 
 class PetsController: UIViewController {
   
-  let animalsManager = AnimalsMAnager()
   
-  var animaPerType:[Animals]?
+  // MARK: - GLOBAL VARS
+  let animalsManager = AnimalsMAnager()
   var generalAnimalList:[Animals]?
   
   
@@ -27,10 +27,7 @@ class PetsController: UIViewController {
   @IBOutlet weak var textFieldOutlet: UITextField!
   @IBOutlet var tableview:UITableView!
   
-  
   override func viewDidLoad() {
-    
-    
     
     tableview.delegate = self
     tableview.dataSource = self
@@ -40,50 +37,38 @@ class PetsController: UIViewController {
     //allAnimals()
     animalsManager.fetchToken()
     fetchAnimals()
-    
     self.title = "PET ADOPT 🐕"
-    
+    self.tableview.addSubview(refreshTableveView)
     
   }
   
   
-  // MARK: - NEEDED FETCHES
+  var refreshTableveView:UIRefreshControl{
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(PetsController.refreshData), for: .valueChanged)
+    return refreshControl
+  }
+ 
   
-  /*func allAnimals(){
-   
-   animalsManager.generalAnimals(success:{(animalsInfo) in
-   self.animalList? = animalsInfo.animals
-   self.tableview.reloadData()
-   print(animalsInfo.animals)})
-   }
-   
-   */
-  
-  //  func fetchEverything(_ type:String){
-  //     animalsManager.searchType(type: type,
-  //                                success:{(infoType) in
-  //                                  self.animals = infoType.animal
-  //
-  //                                  self.tableview.reloadData()
-  //                                  print("in succes block \n\n")})
-  //
-  //  }
-  
+  @objc func refreshData(){
+    fetchAnimals()
+    self.tableview.reloadData()
+    refreshTableveView.endRefreshing()
+    
+  }
 }
+
+
+
 
 // Mark: - DATASOURCE ‼️
 
 extension PetsController: UITableViewDataSource{
   
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//     PrototypeLayout.imagesLoop.count
-//    }
-  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-    return  arrayOfImages(PrototypeLayout.imagesLoop).count
-    //return generalAnimalList?.count ?? 1
+    return generalAnimalList?.count ?? 1
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,58 +81,19 @@ extension PetsController: UITableViewDataSource{
       cell.labelCell.text = animalsInformation.name
       cell.descriptionPet.text = animalsInformation.gender
       
-      
-    
-      
+      for photos in animalsInformation.photos {
+        if let urlToImage = photos.medium {
+          if let url = URL (string: urlToImage){
+            cell.imageCell.af.setImage(withURL: url)
+          }
+        }
+      }
     }
     
-    cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
-    
-    //cell.descriptionPet.text = generalAnimalList?[indexPath.row].gender
-    
-     
-    
-    // IMG
-    
-//    if let urlToImage = generalAnimalList?[indexPath.row].photos.small,  let urlImage = URL(string: urlToImage){
-//
-//       cell.imageCell.af.setImage(withURL: urlImage)
-//}
-
-  
-    
-    
-   /*
-        cell.imageCell.image = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
-        cell.labelCell.text = PrototypeLayout.imagesLoop[indexPath.row]
-        cell.labelCell.textColor = .oceansBlue()
-    
-    
-    */
-    
-    
-    
-    //    if let animals = animalList?[indexPath.row]{
-    //      cell.labelCell.text = animals.name
-    //
-    //      let urlToImage = animals.photos.small
-    //      if let urlImage = URL(string: urlToImage){
-    //            cell.imageCell.af.setImage(withURL: urlImage)
-    //          }
-    //                                 Aquí cuando decodifique  correctamente
-    //    }
     
     return cell
   }
   
-  
-  //   func fetchAnimalType(_ type:String){
-  //      animalsManager.searchType(type: type,
-  //                                  success:{(nformation) in
-  //                                    self.animaPerType = information
-  //                                    self.tableview.reloadData()
-  //
-  //    }
   
   
   func arrayOfImages(_ image:[String]) -> [UIImage]{
@@ -158,6 +104,20 @@ extension PetsController: UITableViewDataSource{
       }
     }
     return imageArray
+  }
+  
+  
+  
+  
+  func fetchAnimalType(_ type:String){
+    animalsManager.searchAnimals(type: type,
+                                 success:{(information) in
+                                  self.generalAnimalList = information.animals
+                                  self.tableview.reloadData()
+                                  
+                                 })
+    
+    
   }
   
   func fetchAnimals(){
@@ -174,11 +134,13 @@ extension PetsController: UITableViewDataSource{
 
 func gettingPassword(){
   AnimalsMAnager.fetchPassword { (Password) in
-    
     PetsViewModel.myPAss = Password.access_token
     print(type(of:  PetsViewModel.myPAss))
   }
 }
+
+
+
 
 // Mark: - DELEGATE ‼️
 extension PetsController: UITableViewDelegate {
@@ -187,24 +149,24 @@ extension PetsController: UITableViewDelegate {
     performSegue(withIdentifier: "goToDetalil", sender: nil)
     PetsViewModel.selectedPet = generalAnimalList?[indexPath.row]
     PrototypeLayout.selectedName = PrototypeLayout.imagesLoop[indexPath.row]
-    PrototypeLayout.selectedImage = arrayOfImages(PrototypeLayout.imagesLoop)[indexPath.row]
     
-    print(indexPath)
+    
   }
   
 }
 
+
 extension PetsController :UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    animalsManager.fetchToken()
+    
     print("\(textFieldOutlet.text)")
-    // fetchAnimalType(textFieldOutlet.text ?? "")
+    fetchAnimalType(textField.text ?? "")
     textField.resignFirstResponder() // para que se quite el teclado  y que pierda el foco
     return true
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    //animalsManager.fetchToken()
+    //  animalsManager.fetchToken()
   }
   
   
