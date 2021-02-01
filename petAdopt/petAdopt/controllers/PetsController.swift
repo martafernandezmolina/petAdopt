@@ -51,7 +51,7 @@ class PetsController: UIViewController {
   
   @objc func refreshData(){
 
-    fetchAnimalType("cat")
+    fetchAnimalType("bird")
     self.tableview.reloadData()
     refreshTableveView.endRefreshing()
     
@@ -62,7 +62,7 @@ class PetsController: UIViewController {
   }
   override func viewWillDisappear(_ animated: Bool) {
    
-   // fetchAnimalType("horse")
+  // fetchAnimalType("horse")
   }
 
 }
