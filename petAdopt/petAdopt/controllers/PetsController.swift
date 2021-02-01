@@ -62,7 +62,7 @@ class PetsController: UIViewController {
   }
   override func viewWillDisappear(_ animated: Bool) {
    
-   fetchAnimalType("horse")
+  // fetchAnimalType("horse")
   }
 
 }
