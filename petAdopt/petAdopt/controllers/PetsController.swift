@@ -32,7 +32,7 @@ class PetsController: UIViewController {
     tableview.dataSource = self
     let nib = UINib (nibName: "PetCell", bundle: nil)
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
-   // AnimalsMAnager.fetchPassword()
+    AnimalsMAnager.fetchPassword()
    
     fetchAnimals()
     self.title = "PET ADOPT 🐕"
@@ -62,7 +62,7 @@ class PetsController: UIViewController {
   }
   override func viewWillDisappear(_ animated: Bool) {
    
-  // fetchAnimalType("horse")
+   fetchAnimalType("horse")
   }
 
 }

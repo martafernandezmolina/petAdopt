@@ -38,24 +38,24 @@ struct AnimalsMAnager{
   
   //MARK :-  PASWORD
   
-//  static func fetchPassword(){
-//
-//
-//    let parameters:[String:String] = [
-//      "grant_type": "client_credentials",
-//      "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
-//      "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // body
-//
-//    AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-//        if let data = response.data, let token = (try? JSONSerialization.jsonObject(with: data, options: [])
-//            as? [String: Any])?["access_token"] as? String {
-//          UsersDefaultManager.setToken(token: token)
-//            print("\nRefresh token completed successfully. New token is: \(token)\n")
-//
-//        }
-//    }
-//
-//  }
+  static func fetchPassword(){
+
+
+    let parameters:[String:String] = [
+      "grant_type": "client_credentials",
+      "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
+      "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // body
+
+    AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+        if let data = response.data, let token = (try? JSONSerialization.jsonObject(with: data, options: [])
+            as? [String: Any])?["access_token"] as? String {
+          UsersDefaultManager.setToken(token: token)
+            print("\nRefresh token completed successfully. New token is: \(token)\n")
+
+        }
+    }
+
+  }
   
   
   //MARK :-  OBTAIN TOKEN URL
