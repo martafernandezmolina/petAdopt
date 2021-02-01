@@ -12,45 +12,50 @@ import Alamofire
 
 struct AnimalsMAnager{
   
+  var readToken = UserDefaults.standard.string(forKey:  UsersDefaultManager.token)
   
   
-  static var accesToken:String = ""
-  //accesToken
-
   let headers: HTTPHeaders = [
-    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6IjE2ZTE0Njk1MDE1NGMzMDU5MjQ1YTlhNGJiMzE2NDllZjIwNThhNWYyZWIxZjUyMTM4YTVmMmNhNWFhYWI2ZDdhMTg4YTgzN2IzZTY2MDZkIiwiaWF0IjoxNjEyMDk3NjQ3LCJuYmYiOjE2MTIwOTc2NDcsImV4cCI6MTYxMjEwMTI0Nywic3ViIjoiIiwic2NvcGVzIjpbXX0.GG7nPX9gMmUsibSKXpfoX808CCNZ5oFK62sAczcy8wGbYI_bQyzd26pytQxMLbsMRbzqk_9IgR1DJ5R5EVRzUAGe6RH7f9Yo4NLP09tI3JglB8QP2kKG3dS38r51s4-aAyWLoCZHcnYhiB8P8jNSS1NDyLYfU9NxTkS6-T_8_j5SSkt6o-oaIPmIdP_bKyNKwImco-gu7kJnQJbvNh8iR_X1YIUoUBX9wD49nLrHteloblsC21-ZiHCNhpZX10m488mJWUs_wkh6BZuKRzRMjRq4QNiG9M9rVLBLbQ8sF6LOrviCuXNPB1F9lHP7MAOdDr9wAFA5vJHc9vcYsRJcxg"
+    "Authorization": "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5akNCRzBkZVFndEtPWGRIN1h3M0dUQnZOdVlKa1RsenVySWRXQ0dHTEF6NWZsTG1OWiIsImp0aSI6IjE1ZmJjOTY0ZWFkNjY5YmY5NGFkZTY1YmEyOGEzNjJhY2I5YmQwY2ExZjQ3YWEzODk4OTVmN2IwMDVlN2Y5NWVmMGY1NmQxMTkzZGU5YjFkIiwiaWF0IjoxNjEyMTY5NjY5LCJuYmYiOjE2MTIxNjk2NjksImV4cCI6MTYxMjE3MzI2OSwic3ViIjoiIiwic2NvcGVzIjpbXX0.ddrdLwjFucaad2E467sbjfcT7ddjYxIGkiVeqiUPbAxOSuiXHKlSHV1Pg2pYhGeBewNFAUmdKQOyC-b6jnc0tyzlEayLsHP6yEVpG-d-r9vp1gH0S-kl8uPRykGbDjxBOMFU4DpRhNJl3Wo7xN92sMWhBMGHa9MfOHNbAtIvfrqLkAeTxXKYF8NVXQgZSs5T2MK5W2UvWp-jAaKptxBFjToKSeNfwACxPKWOrABa1elyPmtqgATYCmOmaIambzKl0sVSwCcnAfpOS8wRpBTnBENBrZLXUKmI6ie5uC2oQ_htFQpLBE4843mrrlzXb1wzGMu420JzCd5swuxk6SiRsg"
   ]
+ 
+  
+  /*
+   
+   let headers: HTTPHeaders = [
+     "Authorization": "Bearer \(UsersDefaultManager.readToken())"
+   ]
+   
+   */
+  
   
   let parameters:[String:String] = [
     "grant_type": "client_credentials",
     "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
     "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // BODY!!!!
   
-  
+ 
   
   //MARK :-  PASWORD
   
-  static func  fetchPassword(success: @escaping(Password)-> ()){
-    
-    let parameters:[String:String] = [
-      "grant_type": "client_credentials",
-      "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
-      "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // body
-    
-    
-    
-    AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, headers : nil).validate().responseDecodable(of: Password.self)
-      { response in
-        guard let token:Password = response.value else {
-          print ("function decoding error")
-          return
-        }
-      success(token)
-      }
-  }
-  
-  
-  
+//  static func fetchPassword(){
+//
+//
+//    let parameters:[String:String] = [
+//      "grant_type": "client_credentials",
+//      "client_id" : "9jCBG0deQgtKOXdH7Xw3GTBvNuYJkTlzurIdWCGGLAz5flLmNZ",
+//      "client_secret": "RUpohoORBvS9yjJzM6UaXgP5T4bBZBWqnI9ZZXur" ]  // body
+//
+//    AF.request(EndPoints.getToken.rawValue, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+//        if let data = response.data, let token = (try? JSONSerialization.jsonObject(with: data, options: [])
+//            as? [String: Any])?["access_token"] as? String {
+//          UsersDefaultManager.setToken(token: token)
+//            print("\nRefresh token completed successfully. New token is: \(token)\n")
+//
+//        }
+//    }
+//
+//  }
   
   
   //MARK :-  OBTAIN TOKEN URL
@@ -61,7 +66,7 @@ struct AnimalsMAnager{
       .responseJSON { response in
         if let response =  response.value {
           print(response)
-          AnimalsMAnager.accesToken.append("\(response)")
+         // AnimalsMAnager.accesToken.append("\(response)")
           print ("##############")
           
         }
@@ -74,17 +79,18 @@ struct AnimalsMAnager{
         .responseJSON { response in
           print(response.result)
           print("##############")
-          //todas las request funcionan, pero falta poder guardar los valores. 
+          
         }
     }
     
     
     // MARK :- DECODING ALL ANIMALS
     
-    func generalAnimals(success: @escaping(AnimalList)-> ()) {
-      
+  func generalAnimals(success: @escaping(AnimalList)-> ()) {
+
       AF.request(EndPoints.generalAnimals.rawValue, parameters: nil, headers: headers).validate().responseDecodable(of: AnimalList.self){
         response in
+  
         guard let animalList:AnimalList  = response.value else {
           debugPrint("Error while calling \(#function)")
           debugPrint(response.description)

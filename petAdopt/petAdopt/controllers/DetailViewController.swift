@@ -23,10 +23,14 @@ class DetailViewController: UIViewController{
   
   @IBOutlet weak var petDescribing: UILabel!
   
+ 
   //MARK:- Actions
   
   @IBAction func AdoptAction(_ sender: Any) {
-    
+    if let url = PetsViewModel.selectedPet?.url,  let outsUrl = URL(string: url){
+      UIApplication.shared.open(outsUrl)
+    }
+ 
   }
   
   let animalInfo = PetsController()

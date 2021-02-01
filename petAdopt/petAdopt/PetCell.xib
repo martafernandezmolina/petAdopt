@@ -19,37 +19,40 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultIamge" translatesAutoresizingMaskIntoConstraints="NO" id="zzp-nF-WK6">
                         <rect key="frame" x="0.0" y="0.0" width="113" height="99"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="113" id="jpB-2l-UlV"/>
-                            <constraint firstAttribute="height" constant="99" id="k90-RG-0XM"/>
+                            <constraint firstAttribute="width" constant="113" id="Gia-9n-4cV"/>
+                            <constraint firstAttribute="height" constant="99" id="c5x-HW-vUy"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3X-Fk-WyE">
-                        <rect key="frame" x="133" y="6" width="309" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="43" id="hfz-0X-Mrs"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are many variations of passages of Lorem of passages of Lorem " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3c-wM-Bvs" userLabel="There are many variations of passages of Lorem of passages of Lorem">
-                        <rect key="frame" x="133" y="49" width="289" height="35"/>
+                        <rect key="frame" x="321" y="64" width="90" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="7L0-GR-MTZ"/>
+                            <constraint firstAttribute="height" constant="24" id="t7i-hM-Yi1"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3X-Fk-WyE">
+                        <rect key="frame" x="118" y="19" width="312" height="26.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26.5" id="cbu-w4-cqO"/>
+                            <constraint firstAttribute="width" constant="312" id="zLa-Xf-Pqe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                        <color key="textColor" systemColor="systemYellowColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Q3X-Fk-WyE" firstAttribute="leading" secondItem="zzp-nF-WK6" secondAttribute="trailing" constant="20" id="0x1-CR-MKm"/>
-                    <constraint firstAttribute="bottom" secondItem="zzp-nF-WK6" secondAttribute="bottom" id="81X-WS-asq"/>
-                    <constraint firstItem="Q3X-Fk-WyE" firstAttribute="top" secondItem="tGu-ax-6py" secondAttribute="top" constant="6" id="8f4-2x-zoy"/>
-                    <constraint firstItem="C3c-wM-Bvs" firstAttribute="leading" secondItem="zzp-nF-WK6" secondAttribute="trailing" constant="20" id="B4Y-No-5tl"/>
-                    <constraint firstAttribute="trailing" secondItem="Q3X-Fk-WyE" secondAttribute="trailing" id="KpD-kr-oBR"/>
-                    <constraint firstAttribute="bottom" secondItem="C3c-wM-Bvs" secondAttribute="bottom" constant="15" id="NPg-AX-ZgR"/>
-                    <constraint firstItem="C3c-wM-Bvs" firstAttribute="top" secondItem="Q3X-Fk-WyE" secondAttribute="bottom" id="QQa-Kj-yKB"/>
-                    <constraint firstAttribute="trailing" secondItem="C3c-wM-Bvs" secondAttribute="trailing" constant="20" id="ZEU-Ns-zWq"/>
-                    <constraint firstItem="zzp-nF-WK6" firstAttribute="leading" secondItem="tGu-ax-6py" secondAttribute="leading" id="Zwg-1r-3f5"/>
-                    <constraint firstItem="zzp-nF-WK6" firstAttribute="top" secondItem="tGu-ax-6py" secondAttribute="top" id="wKz-ju-pRQ"/>
+                    <constraint firstAttribute="bottom" secondItem="zzp-nF-WK6" secondAttribute="bottom" id="6FX-nD-cDk"/>
+                    <constraint firstItem="Q3X-Fk-WyE" firstAttribute="top" secondItem="tGu-ax-6py" secondAttribute="top" constant="19" id="BmU-Zg-zoK"/>
+                    <constraint firstAttribute="trailing" secondItem="C3c-wM-Bvs" secondAttribute="trailing" constant="31" id="E4F-tS-20I"/>
+                    <constraint firstAttribute="bottom" secondItem="C3c-wM-Bvs" secondAttribute="bottom" constant="11" id="GZQ-so-ydX"/>
+                    <constraint firstItem="zzp-nF-WK6" firstAttribute="top" secondItem="tGu-ax-6py" secondAttribute="top" id="f5D-10-fTn"/>
+                    <constraint firstItem="Q3X-Fk-WyE" firstAttribute="leading" secondItem="zzp-nF-WK6" secondAttribute="trailing" constant="5" id="haR-Ka-y9D"/>
+                    <constraint firstItem="zzp-nF-WK6" firstAttribute="leading" secondItem="tGu-ax-6py" secondAttribute="leading" id="jsP-6Y-JLt"/>
+                    <constraint firstAttribute="trailing" secondItem="Q3X-Fk-WyE" secondAttribute="trailing" constant="12" id="t2L-60-aLn"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
@@ -65,6 +68,9 @@
         <image name="DefaultIamge" width="225" height="225"/>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -29,6 +29,7 @@
 		9672655E25C47ECD002A4ABB /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672655D25C47ECD002A4ABB /* Contacts.swift */; };
 		9672656C25C4D94D002A4ABB /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672656B25C4D94D002A4ABB /* Pagination.swift */; };
 		9672656F25C4D9F2002A4ABB /* PaginationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672656E25C4D9F2002A4ABB /* PaginationLinks.swift */; };
+		9672657E25C7882B002A4ABB /* UsersDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672657D25C7882B002A4ABB /* UsersDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		9672655D25C47ECD002A4ABB /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		9672656B25C4D94D002A4ABB /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		9672656E25C4D9F2002A4ABB /* PaginationLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationLinks.swift; sourceTree = "<group>"; };
+		9672657D25C7882B002A4ABB /* UsersDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDefault.swift; sourceTree = "<group>"; };
 		D418C10ADD59B10970B3762B /* Pods-petAdopt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petAdopt.debug.xcconfig"; path = "Target Support Files/Pods-petAdopt/Pods-petAdopt.debug.xcconfig"; sourceTree = "<group>"; };
 		FF1293BDAE0A51B77C8967AE /* Pods-petAdopt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petAdopt.release.xcconfig"; path = "Target Support Files/Pods-petAdopt/Pods-petAdopt.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				9672647525BDB320002A4ABB /* AnimalsManager.swift */,
+				9672657D25C7882B002A4ABB /* UsersDefault.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				9672656C25C4D94D002A4ABB /* Pagination.swift in Sources */,
 				9672653E25C46ACB002A4ABB /* Password.swift in Sources */,
 				967264F525C0DF0B002A4ABB /* Layout.swift in Sources */,
+				9672657E25C7882B002A4ABB /* UsersDefault.swift in Sources */,
 				9672655E25C47ECD002A4ABB /* Contacts.swift in Sources */,
 				9672645A25BD762B002A4ABB /* PetCell.swift in Sources */,
 				9672646D25BD968E002A4ABB /* UIcolor.swift in Sources */,

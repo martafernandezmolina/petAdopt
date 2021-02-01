@@ -20,8 +20,7 @@ class PetsController: UIViewController {
   let animalsManager = AnimalsMAnager()
   var generalAnimalList:[Animals]?
   
-  
-  
+
   // MARK: - OUTLETS ‼️
   
   @IBOutlet weak var textFieldOutlet: UITextField!
@@ -33,9 +32,8 @@ class PetsController: UIViewController {
     tableview.dataSource = self
     let nib = UINib (nibName: "PetCell", bundle: nil)
     tableview.register(nib, forCellReuseIdentifier: "PetCell")
-    gettingPassword()
-    //allAnimals()
-    animalsManager.fetchToken()
+   // AnimalsMAnager.fetchPassword()
+   
     fetchAnimals()
     self.title = "PET ADOPT 🐕"
     self.tableview.addSubview(refreshTableveView)
@@ -43,29 +41,36 @@ class PetsController: UIViewController {
   }
   
   
-  var refreshTableveView:UIRefreshControl{
+ var refreshTableveView:UIRefreshControl{
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(PetsController.refreshData), for: .valueChanged)
+    refreshControl.tintColor = .oceansBlue()
     return refreshControl
   }
  
   
   @objc func refreshData(){
-    fetchAnimals()
+
+    fetchAnimalType("cat")
     self.tableview.reloadData()
     refreshTableveView.endRefreshing()
     
   }
+  override func viewWillAppear(_ animated: Bool) {
+    
+    fetchAnimals()
+  }
+  override func viewWillDisappear(_ animated: Bool) {
+   
+   // fetchAnimalType("horse")
+  }
+
 }
-
-
-
 
 // Mark: - DATASOURCE ‼️
 
 extension PetsController: UITableViewDataSource{
-  
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     return generalAnimalList?.count ?? 1
@@ -93,9 +98,7 @@ extension PetsController: UITableViewDataSource{
     
     return cell
   }
-  
-  
-  
+    
   func arrayOfImages(_ image:[String]) -> [UIImage]{
     var imageArray = [UIImage]()
     image.forEach { img in
@@ -106,9 +109,7 @@ extension PetsController: UITableViewDataSource{
     return imageArray
   }
   
-  
-  
-  
+
   func fetchAnimalType(_ type:String){
     animalsManager.searchAnimals(type: type,
                                  success:{(information) in
@@ -116,7 +117,7 @@ extension PetsController: UITableViewDataSource{
                                   self.tableview.reloadData()
                                   
                                  })
-    
+
     
   }
   
@@ -131,15 +132,6 @@ extension PetsController: UITableViewDataSource{
   }
   
 }
-
-func gettingPassword(){
-  AnimalsMAnager.fetchPassword { (Password) in
-    PetsViewModel.myPAss = Password.access_token
-    print(type(of:  PetsViewModel.myPAss))
-  }
-}
-
-
 
 
 // Mark: - DELEGATE ‼️
@@ -158,16 +150,9 @@ extension PetsController: UITableViewDelegate {
 
 extension PetsController :UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    
-    print("\(textFieldOutlet.text)")
-    fetchAnimalType(textField.text ?? "")
-    textField.resignFirstResponder() // para que se quite el teclado  y que pierda el foco
+    let textValue = textField.text
+    fetchAnimalType(textValue ?? "cat")
+    textField.resignFirstResponder()
     return true
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    //  animalsManager.fetchToken()
-  }
-  
-  
 }

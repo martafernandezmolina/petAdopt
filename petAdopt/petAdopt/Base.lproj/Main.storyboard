@@ -11,7 +11,7 @@
         <!--Pets Controller-->
         <scene sceneID="jLp-D8-nOj">
             <objects>
-                <viewController id="Pso-pP-EDV" customClass="PetsController" customModule="petAdopt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pso-pP-EDV" customClass="PetsController" customModule="petAdopt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3xm-mL-qeS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
         <!--Detail View Controller-->
         <scene sceneID="mYe-gM-4nn">
             <objects>
-                <viewController id="hod-Tl-Wbz" customClass="DetailViewController" customModule="petAdopt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hod-Tl-Wbz" customClass="DetailViewController" customModule="petAdopt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mkh-Gi-AHe" customClass="detailViewController">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tri-bv-OI6" secondAttribute="trailing" id="Ads-xr-Cby"/>
                                     <constraint firstItem="tri-bv-OI6" firstAttribute="leading" secondItem="V5h-f8-1B8" secondAttribute="leading" id="D5d-jl-kpU"/>
+                                    <constraint firstItem="tri-bv-OI6" firstAttribute="top" secondItem="V5h-f8-1B8" secondAttribute="top" constant="23" id="D7M-Ok-Dmh"/>
                                     <constraint firstAttribute="bottom" secondItem="tri-bv-OI6" secondAttribute="bottom" constant="22" id="LaQ-WN-nQu"/>
                                     <constraint firstAttribute="width" constant="414" id="iim-Uf-uwL"/>
                                     <constraint firstAttribute="height" constant="307" id="yW8-UX-yDL"/>
@@ -199,9 +201,17 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="348" id="m6q-a1-1t4"/>
+                                    <constraint firstAttribute="height" constant="154.5" id="qRL-Of-qaT"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32  ✨🥰" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjR-xH-K0f">
                                 <rect key="frame" x="20" y="652.5" width="374" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="eHq-yw-JEA"/>
+                                    <constraint firstAttribute="width" constant="374" id="r4H-VK-BTn"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
